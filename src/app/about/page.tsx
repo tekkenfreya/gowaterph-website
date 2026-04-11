@@ -10,21 +10,8 @@ const AboutUsPage = () => {
       <Header />
       <main>
 
-        {/* Hero Section */}
-        <section className="relative pt-32 pb-16 overflow-hidden">
-          <div className="absolute inset-0 z-0 bg-gradient-to-br from-sky-50 via-cyan-100 to-blue-200"></div>
-          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 text-slate-900">
-              About GoWater
-            </h1>
-            <p className="text-xl text-slate-700">
-              Transforming water access through innovative technology and sustainable practices.
-            </p>
-          </div>
-        </section>
-
         {/* Management Team Section */}
-        <section className="py-20 bg-slate-50">
+        <section className="pt-32 pb-20 bg-slate-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-slate-800 mb-3">Management Team</h2>
