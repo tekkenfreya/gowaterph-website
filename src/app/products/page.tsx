@@ -9,6 +9,8 @@ interface Product {
   id: number;
   name: string;
   tagline: string;
+  image: string;
+  priceFrom: string;
   description: string;
   specifications: string[];
   variants: string[];
@@ -20,38 +22,124 @@ const ProductsPage = () => {
   const products: Product[] = [
     {
       id: 1,
-      name: 'GoWater Vendo Machine',
-      tagline: 'Full-Featured Commercial Solution',
-      description: 'Complete water vending system designed for high-traffic commercial locations. Equipped with advanced RO filtration, smart payment systems, and remote monitoring capabilities.',
+      name: 'Cold Flow Dispenser',
+      tagline: 'Everyday Cold Water Refill',
+      image: '/images/products/cold-flow.png',
+      priceFrom: 'Php 22,999 + VAT',
+      description:
+        'A reliable cold water dispenser with 3-stage filtration for homes, offices, and commercial use. Designed for 24/7 automated operation with multiple payment options and SMS remote monitoring.',
       specifications: [
-        'Reverse Osmosis (RO) Filtration System',
-        'HMI Touch Screen Interface',
-        'Multi-Payment: Coins + Online (GCash, Maya)',
-        'SMS & Mobile App Sales Monitoring',
-        'Water Level Sensor with SMS Alerts',
-        'Real-Time Remote System Access'
+        '24/7 Automated Operation',
+        'Cold Water Refill',
+        '3-Stage Filtration System',
+        'Touch Screen Ordering',
+        'Multiple Payment Options',
+        'SMS Remote Monitoring',
       ],
-      variants: ['Standard', 'Cold Water'],
-      badge: 'Premium',
-      badgeColor: 'from-cyan-500 to-blue-600'
+      variants: ['Gallon Type', 'Direct Piping Type'],
+      badge: 'Starter',
+      badgeColor: 'from-cyan-500 to-blue-500',
     },
     {
       id: 2,
-      name: 'Dispenser Model',
-      tagline: 'Compact & Lightweight',
-      description: 'Space-efficient cold water dispenser with smart monitoring features. Ideal for smaller locations requiring essential connectivity and real-time alerts.',
+      name: 'Smart Vendo',
+      tagline: 'Automated Water Vending Machine',
+      image: '/images/products/smart-vendo.png',
+      priceFrom: 'Php 79,999 + VAT',
+      description:
+        'Fully automated water vending machine with RO filtration, HMI touchscreen, multi-payment, and SMS-based remote monitoring. Ideal for barangays, LGUs, schools, and high-traffic community areas.',
       specifications: [
-        'Cold Water Dispensing Only',
-        'HMI Touch Screen Interface',
-        'Coin Slot Payment System',
-        'SMS & Mobile App Sales Monitoring',
-        'Water Level Sensor with SMS Alerts',
-        'Compact Footprint Design'
+        'Reverse Osmosis Filtration',
+        'Touch Screen Ordering',
+        'Multi-Payment (Coins / QR)',
+        'SMS Sales & Alert Monitoring',
+        '30L Food Grade Stainless Tank',
+        'Customizable Branding',
       ],
-      variants: ['Cold Water'],
-      badge: 'Compact',
-      badgeColor: 'from-green-500 to-emerald-600'
-    }
+      variants: ['HMI + Coin Slot', 'HMI Only', 'Coin Slot Only'],
+      badge: 'Popular',
+      badgeColor: 'from-blue-500 to-indigo-600',
+    },
+    {
+      id: 3,
+      name: 'Quad Flow Dispenser',
+      tagline: '6-Stage Filtration with Cold Water',
+      image: '/images/products/quad-flow.png',
+      priceFrom: 'Php 188,888 + VAT',
+      description:
+        'Compact automated water dispenser with 6-stage advanced filtration, cold water capability, and touchscreen ordering. Built for schools, offices, LGUs, condominiums, and community stations.',
+      specifications: [
+        '6 Stages Advanced Filtration',
+        'Cold Water Refill',
+        'RO + UV Light Sterilizer',
+        'Touch Screen Ordering',
+        'Multiple Payment Options',
+        'Energy Efficient',
+      ],
+      variants: ['HMI Interface'],
+      badge: 'Premium',
+      badgeColor: 'from-purple-500 to-fuchsia-600',
+    },
+    {
+      id: 4,
+      name: 'Water Filtration — Basic',
+      tagline: 'Multi-media + Carbon',
+      image: '/images/products/water-filtration-basic.png',
+      priceFrom: 'Php 29,999 + VAT',
+      description:
+        'Multi-stage household filtration with multimedia, 10 & 5 micron sediment, and carbon filters. For non-potable household applications — washing, cleaning, and general domestic use.',
+      specifications: [
+        '6FRP Multimedia Filter',
+        '4 Stages Cartridge Filtration',
+        'Removes Sediment & Chlorine',
+        'Manual / Automatic Backwash',
+        'Non-Potable Household Water',
+        '1 Year Service Warranty',
+      ],
+      variants: ['Manual Head', 'Automatic Head'],
+      badge: 'Filtration',
+      badgeColor: 'from-teal-500 to-cyan-600',
+    },
+    {
+      id: 5,
+      name: 'Water Filtration — With Softener',
+      tagline: 'Multi-media + Softener + Carbon',
+      image: '/images/products/water-filtration-softener.png',
+      priceFrom: 'Php 49,999 + VAT',
+      description:
+        'Advanced filtration with water softener for hard water areas. Reduces calcium, magnesium, chlorine, and sediment buildup. Non-potable — ideal for households, laundry, and general domestic use.',
+      specifications: [
+        'FRP Multimedia Filter',
+        'FRP Softener Filter',
+        'FRP Active Carbon Filter',
+        '4 Stages Cartridge Filtration',
+        'Brine Tank Included',
+        'Prevents Scale Buildup',
+      ],
+      variants: ['Manual Head', 'Automatic Head'],
+      badge: 'Softener',
+      badgeColor: 'from-emerald-500 to-green-600',
+    },
+    {
+      id: 6,
+      name: 'Reverse Osmosis Purifier',
+      tagline: 'Potable Drinking Water',
+      image: '/images/products/reverse-osmosis.png',
+      priceFrom: 'Php 18,999 + VAT',
+      description:
+        'Reverse Osmosis purification system producing clean, high-purity drinking water. Removes dissolved salts, heavy metals, chemicals, bacteria, and viruses — safe for drinking and beverage use.',
+      specifications: [
+        '3-Stage Pre-Filtration',
+        'RO Membrane',
+        'Post Carbon Filter',
+        'UV Light Sterilizer',
+        'Booster Pump',
+        'High / Low Pressure Switches',
+      ],
+      variants: ['Standard'],
+      badge: 'Potable',
+      badgeColor: 'from-sky-500 to-blue-600',
+    },
   ];
 
   return (
@@ -67,7 +155,7 @@ const ProductsPage = () => {
               GoWater Product Range
             </h1>
             <p className="text-xl text-slate-700">
-              Professional water vending solutions engineered for reliability and performance.
+              Professional water vending, filtration, and purification solutions engineered for reliability.
             </p>
           </div>
         </section>
@@ -96,47 +184,64 @@ const ProductsPage = () => {
                 Choose Your Solution
               </h2>
               <p className="text-lg text-slate-600">
-                Two models designed for different operational requirements.
+                Six models covering vending, filtration, and drinking water purification.
               </p>
             </div>
 
             {/* Product Cards Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="bg-slate-50 rounded-2xl p-8 border-2 border-slate-200 hover:border-cyan-500 transition-all duration-300 hover:shadow-xl"
+                  className="bg-slate-50 rounded-2xl p-6 border-2 border-slate-200 hover:border-cyan-500 transition-all duration-300 hover:shadow-xl flex flex-col"
                 >
+                  {/* Image */}
+                  <div className="relative w-full h-56 mb-6 bg-white rounded-xl overflow-hidden border border-slate-200">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-contain p-4"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+
                   {/* Badge */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className={`inline-block px-4 py-1.5 bg-gradient-to-r ${product.badgeColor} text-white text-xs font-bold rounded-full uppercase tracking-wide`}>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className={`inline-block px-3 py-1 bg-gradient-to-r ${product.badgeColor} text-white text-xs font-bold rounded-full uppercase tracking-wide`}>
                       {product.badge}
                     </span>
                   </div>
 
                   {/* Product Info */}
-                  <h3 className="text-2xl font-bold text-slate-800 mb-2">
+                  <h3 className="text-xl font-bold text-slate-800 mb-1">
                     {product.name}
                   </h3>
 
-                  <p className="text-cyan-600 font-semibold mb-4">
+                  <p className="text-cyan-600 font-semibold text-sm mb-3">
                     {product.tagline}
                   </p>
 
-                  <p className="text-slate-600 mb-6 leading-relaxed">
+                  {/* Price */}
+                  <div className="mb-4">
+                    <span className="text-xs text-slate-500 font-medium">Starts at</span>
+                    <p className="text-lg font-bold text-slate-900">{product.priceFrom}</p>
+                  </div>
+
+                  <p className="text-slate-600 text-sm mb-5 leading-relaxed">
                     {product.description}
                   </p>
 
                   {/* Specifications */}
-                  <div className="mb-6">
+                  <div className="mb-5">
                     <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wide mb-3">
-                      Specifications
+                      Key Features
                     </h4>
-                    <ul className="space-y-2.5">
+                    <ul className="space-y-2">
                       {product.specifications.map((spec, idx) => (
                         <li key={idx} className="flex items-start text-sm">
                           <svg
-                            className="w-5 h-5 text-cyan-600 mr-2 flex-shrink-0"
+                            className="w-4 h-4 text-cyan-600 mr-2 mt-0.5 flex-shrink-0"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                           >
@@ -153,11 +258,11 @@ const ProductsPage = () => {
                   </div>
 
                   {/* Variants */}
-                  <div className="mb-6 pb-6 border-b border-slate-300">
+                  <div className="mb-5 pb-5 border-b border-slate-300">
                     <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wide mb-3">
                       Available Models
                     </h4>
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
                       {product.variants.map((variant, idx) => (
                         <span
                           key={idx}
@@ -172,7 +277,7 @@ const ProductsPage = () => {
                   {/* CTA */}
                   <Link
                     href="/contact"
-                    className="w-full inline-flex items-center justify-center bg-slate-800 hover:bg-slate-900 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300"
+                    className="mt-auto w-full inline-flex items-center justify-center bg-slate-800 hover:bg-slate-900 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300"
                   >
                     Request Quote
                     <svg
