@@ -8,7 +8,7 @@ const Footer = () => {
             <p className="text-sm mb-1">2288 Chino Roces Ave. Makati City</p>
             <p className="text-sm mb-1">
               <a href="tel:+639989880043" className="hover:text-cyan-400 hover:underline">+63 998-988-0043</a> |{' '}
-              <a href="mailto:hello@gowatervendo.com" className="hover:text-cyan-400 hover:underline">hello@gowatervendo.com</a>
+              <a href="mailto:info@gowater.ph" className="hover:text-cyan-400 hover:underline">info@gowater.ph</a>
             </p>
             <p className="mt-4 text-xs text-gray-400">
               &copy; {new Date().getFullYear()} GoWater. All rights reserved. |{' '}

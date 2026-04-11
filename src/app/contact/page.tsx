@@ -38,7 +38,7 @@ const ContactPage = () => {
       `Message:\n${formData.message}`
     );
 
-    window.location.href = `mailto:hello@gowatervendo.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:info@gowater.ph?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -194,8 +194,8 @@ const ContactPage = () => {
                         <div>
                           <h4 className="text-lg font-semibold text-slate-800 mb-1">Email</h4>
                           <p className="text-slate-600">
-                            <a href="mailto:hello@gowatervendo.com" className="hover:text-cyan-600 transition duration-200">
-                              hello@gowatervendo.com
+                            <a href="mailto:info@gowater.ph" className="hover:text-cyan-600 transition duration-200">
+                              info@gowater.ph
                             </a>
                           </p>
                         </div>
@@ -216,7 +216,7 @@ const ContactPage = () => {
                       </div>
                       <div className="flex justify-between">
                         <span>Sunday</span>
-                        <span>Closed</span>
+                        <span>Via email</span>
                       </div>
                     </div>
                   </div>
