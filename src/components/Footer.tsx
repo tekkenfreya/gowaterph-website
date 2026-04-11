@@ -7,7 +7,7 @@ const Footer = () => {
             <p className="text-sm font-medium text-gray-100 mb-1">GoWater by NXTLVL Water Technology Inc.</p>
             <p className="text-sm mb-1">2288 Chino Roces Ave. Makati City</p>
             <p className="text-sm mb-1">
-              <a href="tel:+639989880043" className="hover:text-cyan-400 hover:underline">+63 998-988-0043</a> |{' '}
+              <a href="tel:+639852773984" className="hover:text-cyan-400 hover:underline">+63 985-277-3984</a> |{' '}
               <a href="mailto:info@gowater.ph" className="hover:text-cyan-400 hover:underline">info@gowater.ph</a>
             </p>
             <p className="mt-4 text-xs text-gray-400">

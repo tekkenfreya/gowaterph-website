@@ -77,8 +77,7 @@ const HeroSection = () => {
 
             {/* Description */}
             <p className="text-xl md:text-2xl text-slate-600 leading-relaxed max-w-xl">
-              We provide sustainable water solutions with the knowledge, technology and
-              commitment needed to ensure clean drinking water for everyone.
+              Since 2017, NXTLVL Water Technology has delivered sustainable water solutions to coastal and island communities across the Philippines — solving the country&apos;s potable water issues one island at a time.
             </p>
 
             {/* CTA Buttons */}
