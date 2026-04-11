@@ -23,6 +23,39 @@ const AboutUsPage = () => {
           </div>
         </section>
 
+        {/* Management Team Section */}
+        <section className="py-20 bg-slate-50">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-slate-800 mb-3">Management Team</h2>
+              <p className="text-lg text-slate-600">The leadership behind NXTLVL Water Technology.</p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {[
+                { name: 'Paco Caparas', role: 'CEO', image: '/images/team/paco-caparas.png' },
+                { name: 'John Jadczak', role: 'CFO', image: '/images/team/john-jadczak.png' },
+                { name: 'Earl Lim', role: 'CTO', image: '/images/team/earl-lim.png' },
+                { name: 'Derya Tanghe', role: 'CMO', image: '/images/team/derya-tanghe.png' },
+              ].map((member) => (
+                <div key={member.name} className="text-center">
+                  <div className="relative w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover"
+                      sizes="160px"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-800">{member.name}</h3>
+                  <p className="text-sm text-cyan-600 font-semibold uppercase tracking-wide">{member.role}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Our Story Section */}
         <section className="relative py-20 overflow-hidden bg-white">
 
@@ -98,39 +131,6 @@ const AboutUsPage = () => {
                     {sdg.num}
                   </div>
                   <h3 className="text-sm font-bold text-slate-800 leading-snug">{sdg.title}</h3>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Management Team Section */}
-        <section className="py-20 bg-white border-t border-slate-200">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-slate-800 mb-3">Management Team</h2>
-              <p className="text-lg text-slate-600">The leadership behind NXTLVL Water Technology.</p>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                { name: 'Paco Caparas', role: 'CEO', image: '/images/team/paco-caparas.png' },
-                { name: 'John Jadczak', role: 'CFO', image: '/images/team/john-jadczak.png' },
-                { name: 'Earl Lim', role: 'CTO', image: '/images/team/earl-lim.png' },
-                { name: 'Derya Tanghe', role: 'CMO', image: '/images/team/derya-tanghe.png' },
-              ].map((member) => (
-                <div key={member.name} className="text-center">
-                  <div className="relative w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-slate-100 shadow-lg">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover"
-                      sizes="160px"
-                    />
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-800">{member.name}</h3>
-                  <p className="text-sm text-cyan-600 font-semibold uppercase tracking-wide">{member.role}</p>
                 </div>
               ))}
             </div>
