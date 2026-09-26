@@ -178,8 +178,16 @@ const ContactPage = () => {
                         <div>
                           <h4 className="text-lg font-semibold text-slate-800 mb-1">Phone</h4>
                           <p className="text-slate-600">
-                            <a href="tel:+639852773984" className="hover:text-cyan-600 transition duration-200">
-                              +63 985-277-3984
+                            <a href="tel:+639681980041" className="whitespace-nowrap hover:text-cyan-600 transition duration-200">
+                              0968-198-0041
+                            </a>{' '}
+                            /{' '}
+                            <a href="tel:+639681980042" className="whitespace-nowrap hover:text-cyan-600 transition duration-200">
+                              0968-198-0042
+                            </a>{' '}
+                            /{' '}
+                            <a href="tel:+639989880043" className="whitespace-nowrap hover:text-cyan-600 transition duration-200">
+                              0998-988-0043
                             </a>
                           </p>
                         </div>
