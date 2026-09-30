@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PageHero from '@/components/ui/PageHero';
+import { ArrowRightIcon, CalendarIcon, MailIcon, MapPinIcon, PhoneIcon } from '@/components/ui/icons';
 
 interface FormData {
   name: string;
@@ -11,19 +13,34 @@ interface FormData {
   message: string;
 }
 
+const phones = [
+  { href: 'tel:+639681980041', label: '0968-198-0041' },
+  { href: 'tel:+639681980042', label: '0968-198-0042' },
+  { href: 'tel:+639989880043', label: '0998-988-0043' },
+];
+
+const hours = [
+  { day: 'Monday - Friday', time: '9:00 AM - 6:00 PM' },
+  { day: 'Saturday', time: '9:00 AM - 4:00 PM' },
+  { day: 'Sunday', time: 'Via email' },
+];
+
+const inputClass =
+  'w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-ink placeholder:text-slate-400 transition focus:border-azure-400 focus:ring-4 focus:ring-azure-100 focus:outline-none';
+
 const ContactPage = () => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
-    message: ''
+    message: '',
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -32,209 +49,136 @@ const ContactPage = () => {
 
     const subject = encodeURIComponent('Contact Form - GoWater Inquiry');
     const body = encodeURIComponent(
-      `Name: ${formData.name}\n` +
-      `Email: ${formData.email}\n` +
-      `Phone: ${formData.phone}\n\n` +
-      `Message:\n${formData.message}`
+      `Name: ${formData.name}\n` + `Email: ${formData.email}\n` + `Phone: ${formData.phone}\n\n` + `Message:\n${formData.message}`
     );
 
     window.location.href = `mailto:info@gowater.ph?subject=${subject}&body=${body}`;
   };
 
   return (
-    <div className="bg-white text-gray-800 min-h-screen">
+    <div className="min-h-screen bg-white">
       <Header />
       <main>
+        <PageHero
+          eyebrow="Contact us"
+          title={
+            <>
+              Get in <span className="text-gradient">touch</span>
+            </>
+          }
+          subtitle="Ready to transform your water business? Contact us today."
+        />
 
-        {/* Hero Section */}
-        <section className="relative pt-32 pb-16 overflow-hidden">
-          <div className="absolute inset-0 z-0 bg-gradient-to-br from-sky-50 via-cyan-100 to-blue-200"></div>
-          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 text-slate-900">
-              Get in Touch
-            </h1>
-            <p className="text-xl text-slate-700">
-              Ready to transform your water business? Contact us today.
-            </p>
-          </div>
-        </section>
+        <section className="pb-24">
+          <div className="container-page grid gap-8 lg:grid-cols-12">
+            <div className="card-soft p-6 sm:p-10 lg:col-span-7">
+              <h2 className="text-2xl font-bold text-ink">Send us a message</h2>
+              <p className="mt-2 text-slate-500">
+                Get in touch with us for inquiries, support, or partnership opportunities. We&apos;d love to hear from you.
+              </p>
 
-        {/* Contact Form Section */}
-        <section className="relative py-20 overflow-hidden bg-white">
-          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-
-              <header className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-slate-800 mb-6">Contact Us</h2>
-                <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                  Get in touch with us for inquiries, support, or partnership opportunities. We&apos;d love to hear from you.
-                </p>
-              </header>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-
-                {/* Contact Form */}
-                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-lg">
-                  <h3 className="text-2xl font-bold text-slate-800 mb-6">Send us a message</h3>
-                  
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition duration-200"
-                        placeholder="Enter your full name"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition duration-200"
-                        placeholder="Enter your email"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition duration-200"
-                        placeholder="Enter your phone number"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
-                        Message *
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        required
-                        rows={5}
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition duration-200 resize-vertical"
-                        placeholder="Tell us about your inquiry..."
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-                    >
-                      Send Message
-                    </button>
-                  </form>
+              <form onSubmit={handleSubmit} className="mt-8 grid gap-5 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-700">
+                    Full name *
+                  </label>
+                  <input type="text" id="name" name="name" value={formData.name} onChange={handleInputChange} required className={inputClass} placeholder="Enter your full name" />
                 </div>
-
-                {/* Contact Information */}
-                <div className="space-y-8">
-                  <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-lg">
-                    <h3 className="text-2xl font-bold text-slate-800 mb-6">Get in Touch</h3>
-                    
-                    <div className="space-y-6">
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
-                          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                          </svg>
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-semibold text-slate-800 mb-1">Address</h4>
-                          <p className="text-slate-600">2288 Chino Roces Ave. Makati City</p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg flex items-center justify-center mr-4">
-                          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                          </svg>
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-semibold text-slate-800 mb-1">Phone</h4>
-                          <p className="text-slate-600">
-                            <a href="tel:+639681980041" className="whitespace-nowrap hover:text-cyan-600 transition duration-200">
-                              0968-198-0041
-                            </a>{' '}
-                            /{' '}
-                            <a href="tel:+639681980042" className="whitespace-nowrap hover:text-cyan-600 transition duration-200">
-                              0968-198-0042
-                            </a>{' '}
-                            /{' '}
-                            <a href="tel:+639989880043" className="whitespace-nowrap hover:text-cyan-600 transition duration-200">
-                              0998-988-0043
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4">
-                          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                          </svg>
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-semibold text-slate-800 mb-1">Email</h4>
-                          <p className="text-slate-600">
-                            <a href="mailto:info@gowater.ph" className="hover:text-cyan-600 transition duration-200">
-                              info@gowater.ph
-                            </a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-lg">
-                    <h3 className="text-xl font-bold text-slate-800 mb-4">Business Hours</h3>
-                    <div className="space-y-2 text-slate-600">
-                      <div className="flex justify-between">
-                        <span>Monday - Friday</span>
-                        <span>9:00 AM - 6:00 PM</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Saturday</span>
-                        <span>9:00 AM - 4:00 PM</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Sunday</span>
-                        <span>Via email</span>
-                      </div>
-                    </div>
-                  </div>
+                <div>
+                  <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-700">
+                    Email address *
+                  </label>
+                  <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} required className={inputClass} placeholder="Enter your email" />
                 </div>
+                <div className="sm:col-span-2">
+                  <label htmlFor="phone" className="mb-2 block text-sm font-medium text-slate-700">
+                    Phone number
+                  </label>
+                  <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleInputChange} className={inputClass} placeholder="Enter your phone number" />
+                </div>
+                <div className="sm:col-span-2">
+                  <label htmlFor="message" className="mb-2 block text-sm font-medium text-slate-700">
+                    Message *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
+                    rows={6}
+                    className={`${inputClass} resize-none`}
+                    placeholder="Tell us about your inquiry..."
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <button type="submit" className="btn-primary w-full sm:w-auto">
+                    Send message
+                    <ArrowRightIcon className="h-4 w-4" />
+                  </button>
+                </div>
+              </form>
+            </div>
 
+            <div className="space-y-6 lg:col-span-5">
+              <div className="glass rounded-3xl p-6 sm:p-8">
+                <h2 className="text-xl font-bold text-ink">Get in touch</h2>
+                <ul className="mt-6 space-y-6">
+                  <li className="flex gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-azure-500 to-iris-700 text-white shadow-soft">
+                      <MapPinIcon />
+                    </span>
+                    <span>
+                      <span className="block text-sm font-semibold text-ink">Address</span>
+                      <span className="mt-1 block text-slate-600">2288 Chino Roces Ave. Makati City</span>
+                    </span>
+                  </li>
+                  <li className="flex gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-azure-500 to-iris-700 text-white shadow-soft">
+                      <PhoneIcon />
+                    </span>
+                    <span>
+                      <span className="block text-sm font-semibold text-ink">Phone</span>
+                      <span className="mt-1 flex flex-col gap-1">
+                        {phones.map((phone) => (
+                          <a key={phone.href} href={phone.href} className="whitespace-nowrap text-slate-600 transition hover:text-azure-700">
+                            {phone.label}
+                          </a>
+                        ))}
+                      </span>
+                    </span>
+                  </li>
+                  <li className="flex gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-azure-500 to-iris-700 text-white shadow-soft">
+                      <MailIcon />
+                    </span>
+                    <span>
+                      <span className="block text-sm font-semibold text-ink">Email</span>
+                      <a href="mailto:info@gowater.ph" className="mt-1 block text-slate-600 transition hover:text-azure-700">
+                        info@gowater.ph
+                      </a>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="card-soft p-6 sm:p-8">
+                <h2 className="flex items-center gap-2 text-xl font-bold text-ink">
+                  <CalendarIcon className="h-5 w-5 text-azure-500" />
+                  Business hours
+                </h2>
+                <dl className="mt-5 divide-y divide-slate-100">
+                  {hours.map((row) => (
+                    <div key={row.day} className="flex items-center justify-between gap-4 py-3 text-sm">
+                      <dt className="text-slate-600">{row.day}</dt>
+                      <dd className="font-semibold text-ink">{row.time}</dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
             </div>
           </div>
         </section>
-
       </main>
       <Footer />
     </div>

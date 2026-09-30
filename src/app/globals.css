@@ -1,42 +1,148 @@
 @import "tailwindcss";
 
-:root {
-  --crystal-water: #e0f2fe;
-  --water-foam: #b3e5fc;
-  --crystal-water-light: #f0f9ff;
-  --aqua-blue: #0891b2;
-  --ocean-blue-light: #0284c7;
-  --ocean-blue: #0369a1;
-  --turquoise: #14b8a6;
-  --turquoise-light: #5eead4;
-  --aqua-blue-dark: #164e63;
-  --deep-water: #0c4a6e;
-}
+@theme {
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
 
-/* Custom animations */
-@keyframes water-bubble-float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(180deg); }
-}
+  /* Brand blue from the GoWater logo (#2484C0) */
+  --color-azure-50: #f1f8fd;
+  --color-azure-100: #e2f0fa;
+  --color-azure-200: #c5e2f5;
+  --color-azure-300: #98cbec;
+  --color-azure-400: #5eaedd;
+  --color-azure-500: #2484c0;
+  --color-azure-600: #1d6ea3;
+  --color-azure-700: #1a5984;
+  --color-azure-800: #184a6c;
+  --color-azure-900: #163e5a;
 
-@keyframes water-bubble-sway {
-  0%, 100% { transform: translateX(0px) rotate(0deg); }
-  50% { transform: translateX(10px) rotate(90deg); }
-}
+  /* Brand indigo from the GoWater logo (#30247E) */
+  --color-iris-50: #f4f3fc;
+  --color-iris-100: #e8e6f8;
+  --color-iris-200: #d0cbf1;
+  --color-iris-300: #aea5e5;
+  --color-iris-400: #8578d3;
+  --color-iris-500: #5d4fbd;
+  --color-iris-600: #45389f;
+  --color-iris-700: #30247e;
+  --color-iris-800: #281e67;
+  --color-iris-900: #211952;
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
+  --color-ink: #0d1b3e;
+
+  --shadow-soft: 0 20px 50px -24px rgb(36 132 192 / 0.45);
+  --shadow-card: 0 1px 2px rgb(13 27 62 / 0.04), 0 16px 40px -20px rgb(13 27 62 / 0.18);
+  --shadow-glass: 0 10px 40px -12px rgb(13 27 62 / 0.18);
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 11s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
   }
-  50% {
-    transform: translateY(-15px);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-slate-600 antialiased;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-azure-200/70 bg-white/70 px-3.5 py-1.5 text-xs font-semibold tracking-[0.12em] text-azure-700 uppercase backdrop-blur;
+  }
+
+  .eyebrow-light {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-xs font-semibold tracking-[0.12em] text-white uppercase backdrop-blur;
+  }
+
+  .h-display {
+    @apply text-4xl leading-[1.08] font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl;
+  }
+
+  .h-section {
+    @apply text-3xl leading-tight font-bold tracking-tight text-ink sm:text-4xl;
+  }
+
+  .text-lead {
+    @apply text-lg leading-relaxed text-slate-600;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-azure-500 to-iris-700 bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-azure-500 to-iris-700 px-6 py-3 text-sm font-semibold text-white shadow-soft transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-20px_rgba(48,36,126,0.6)] focus-visible:ring-4 focus-visible:ring-azure-200 focus-visible:outline-none;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white/80 px-6 py-3 text-sm font-semibold text-ink backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-azure-300 hover:text-azure-700 focus-visible:ring-4 focus-visible:ring-azure-100 focus-visible:outline-none;
+  }
+
+  .btn-light {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-iris-700 shadow-lg transition duration-300 hover:-translate-y-0.5 focus-visible:ring-4 focus-visible:ring-white/40 focus-visible:outline-none;
+  }
+
+  .btn-ghost-light {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:bg-white/20 focus-visible:ring-4 focus-visible:ring-white/30 focus-visible:outline-none;
+  }
+
+  .glass {
+    @apply border border-white/70 bg-white/60 shadow-glass backdrop-blur-xl;
+  }
+
+  .card-soft {
+    @apply rounded-3xl border border-slate-100 bg-white shadow-card;
   }
 }
 
-.water-bubble-float {
-  animation: water-bubble-float 6s ease-in-out infinite;
+/* Product photos with their own background fade softly into the card */
+.photo-fade {
+  mix-blend-mode: multiply;
+  mask-image: radial-gradient(ellipse at center, #000 52%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 52%, transparent 72%);
 }
 
-.water-bubble-sway {
-  animation: water-bubble-sway 4s ease-in-out infinite;
+.photo-white {
+  mix-blend-mode: multiply;
+}
+
+/* Scroll reveal (see Reveal.tsx): visible by default, hidden only after mount when below the fold */
+.reveal {
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    transition: none;
+  }
+
+  .animate-float,
+  .animate-float-slow {
+    animation: none;
+  }
 }

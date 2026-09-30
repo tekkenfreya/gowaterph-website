@@ -3,8 +3,19 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { CloseIcon, MenuIcon } from '@/components/ui/icons';
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/products', label: 'Products' },
+  { href: '/events', label: 'Events' },
+  { href: '/contact', label: 'Contact' },
+];
 
 const Header = () => {
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -25,166 +36,74 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
+
   return (
-    <header
-      className="fixed top-0 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50"
-      style={{
-        backdropFilter: 'blur(20px) saturate(180%)',
-        WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-        background: 'rgba(255, 255, 255, 0.75)',
-        boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-        border: '1px solid rgba(255, 255, 255, 0.18)',
-        borderRadius: '0 0 24px 24px',
-      }}
-    >
-      <div className="px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo and Navigation Group - Left Side */}
-          <div className="flex items-center space-x-8">
-            {/* Logo */}
-            <Link href="/" className="flex-shrink-0">
-              <Image
-                src="/images/gowater new logo.png"
-                alt="GoWater Logo"
-                width={2000}
-                height={2000}
-                className="w-auto h-20"
-                priority
-              />
-            </Link>
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4">
+      <div
+        className={`mx-auto max-w-6xl rounded-full border border-white/70 backdrop-blur-xl transition-all duration-300 ${
+          isScrolled ? 'bg-white/85 shadow-glass' : 'bg-white/65 shadow-[0_4px_24px_-12px_rgba(13,27,62,0.15)]'
+        }`}
+      >
+        <div className="flex h-16 items-center justify-between pr-2.5 pl-5">
+          <Link href="/" className="flex items-center gap-2.5" aria-label="GoWater home">
+            <Image src="/images/brand/gowater-mark.png" alt="" width={141} height={131} className="h-8 w-auto" priority />
+            <Image src="/images/brand/gowater-wordmark.png" alt="GoWater" width={319} height={76} className="h-[22px] w-auto" priority />
+          </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex space-x-1">
+          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
+            {navLinks.map((link) => (
               <Link
-                href="/"
-                className="text-slate-800 hover:bg-slate-100 px-4 py-2 rounded-md text-base font-medium transition-colors duration-300"
+                key={link.href}
+                href={link.href}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+                  isActive(link.href) ? 'bg-azure-50 text-azure-700' : 'text-slate-600 hover:bg-slate-50 hover:text-ink'
+                }`}
               >
-                Home
+                {link.label}
               </Link>
-              <Link
-                href="/about"
-                className="text-slate-800 hover:bg-slate-100 px-4 py-2 rounded-md text-base font-medium transition-colors duration-300"
-              >
-                About Us
-              </Link>
-              <Link
-                href="/products"
-                className="text-slate-800 hover:bg-slate-100 px-4 py-2 rounded-md text-base font-medium transition-colors duration-300"
-              >
-                Our Products
-              </Link>
-              <Link
-                href="/events"
-                className="text-slate-800 hover:bg-slate-100 px-4 py-2 rounded-md text-base font-medium transition-colors duration-300"
-              >
-                Events
-              </Link>
-              <Link
-                href="/contact"
-                className="text-slate-800 hover:bg-slate-100 px-4 py-2 rounded-md text-base font-medium transition-colors duration-300"
-              >
-                Contact Us
-              </Link>
-            </nav>
-          </div>
+            ))}
+          </nav>
 
-          {/* CTA Buttons - Right Side */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Link
-              href="/contact"
-              className="text-slate-800 hover:bg-slate-100 px-4 py-2 rounded-md text-base font-medium transition-colors duration-300"
-            >
-              Get a Quote
+          <div className="flex items-center gap-2">
+            <Link href="/contact" className="btn-primary hidden px-5 py-2.5 lg:inline-flex">
+              Get a quote
             </Link>
-            <Link
-              href="/contact"
-              className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold py-2 px-6 rounded-full text-base transition-all duration-300"
-            >
-              Contact Us
-            </Link>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="lg:hidden">
             <button
               type="button"
-              className="text-slate-800 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-slate-300 p-2 rounded-md"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full text-ink transition hover:bg-slate-100 lg:hidden"
               aria-controls="mobile-menu"
               aria-expanded={isMobileMenuOpen}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              <span className="sr-only">Open main menu</span>
-              <svg
-                className="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16m-7 6h7"
-                />
-              </svg>
+              {isMobileMenuOpen ? <CloseIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
             </button>
           </div>
         </div>
-
-        {/* Mobile menu */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden" id="mobile-menu">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-slate-200">
-              <Link
-                href="/"
-                className="bg-slate-100 text-slate-800 block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Home
-              </Link>
-              <Link
-                href="/about"
-                className="text-slate-800 hover:bg-slate-100 block px-3 py-2 rounded-md text-base font-medium"
-              >
-                About Us
-              </Link>
-              <Link
-                href="/products"
-                className="text-slate-800 hover:bg-slate-100 block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Our Products
-              </Link>
-              <Link
-                href="/events"
-                className="text-slate-800 hover:bg-slate-100 block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Events
-              </Link>
-              <Link
-                href="/contact"
-                className="text-slate-800 hover:bg-slate-100 block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Contact Us
-              </Link>
-              <div className="border-t border-slate-200 pt-3 mt-3 space-y-2">
-                <Link
-                  href="/contact"
-                  className="text-slate-800 hover:bg-slate-100 block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Get a Quote
-                </Link>
-                <Link
-                  href="/contact"
-                  className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white block px-3 py-2 rounded-full text-base font-medium text-center"
-                >
-                  Contact Us
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
+
+      {isMobileMenuOpen && (
+        <div id="mobile-menu" className="mx-auto mt-2 max-w-6xl rounded-3xl border border-white/70 bg-white/95 p-3 shadow-glass backdrop-blur-xl lg:hidden">
+          <nav className="flex flex-col" aria-label="Mobile">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`rounded-2xl px-4 py-3 text-base font-medium ${
+                  isActive(link.href) ? 'bg-azure-50 text-azure-700' : 'text-slate-700 hover:bg-slate-50'
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="btn-primary mt-3 w-full">
+            Get a quote
+          </Link>
+        </div>
+      )}
     </header>
   );
 };
